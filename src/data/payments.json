@@ -1,0 +1,7 @@
+{
+  "items": [
+    {"id": 1,"recipient": "Angela Bassett", "amount": 50},
+    {"id": 2,"recipient": "Rachel Weisz", "amount": 3000},
+    {"id": 3,"recipient": "Brendan Frasier", "amount": 8}
+  ]
+}
