@@ -6,10 +6,11 @@ export default function CreateAccount() {
   return (
     <div>
       <h1>Create Account</h1>
-      <form className='' onSubmit={() => console.log('login form submitted')}>
-        <input type='email' placeholder='Email' />
-        <input type='password' placeholder='Password' />
-        <input type='password' placeholder='Confirm password' />
+      <form className='' onSubmit={() => console.log('create account form submitted')}>
+        <input type='text' placeholder='Name' required />
+        <input type='email' placeholder='Email' required />
+        <input type='password' placeholder='Password' required />
+        <input type='password' placeholder='Confirm password' required />
         <button>Create</button>
       </form>
     </div>

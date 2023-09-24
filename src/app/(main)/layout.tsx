@@ -1,11 +1,15 @@
 import './main.css'
 import SideNav from "@/components/side-nav/side-nav"
+import { getUser } from '@/lib/auth/get-user'
 import { getUserSession } from '@/lib/auth/get-user-session'
 import { redirect } from "next/navigation"
 
 export default async function MainLayout({children}: {children: React.ReactNode}) {
   const session = await getUserSession()
+  const user = await getUser()
+  
   !session && redirect('/login')
+  !user?.moovId && redirect('/setup')
 
   return (
     <>

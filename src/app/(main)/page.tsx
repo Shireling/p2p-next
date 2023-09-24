@@ -2,15 +2,37 @@
 
 import ConfirmationModal from '@/components/confirmation-modal/confirmation-modal'
 import { useState } from 'react'
-import { useAppSelector } from '@/redux/store'
 import { useModal } from '@/hooks/use-modal'
+import { useSession } from 'next-auth/react'
 
 export default function SendMoney() {
   const [amount, setAmount] = useState(0)
   const [recipient, setRecipient] = useState('')
 
-  const username = useAppSelector((state) => state.authReducer.value.username)
-  const confirmationModal = useModal()  
+  const {data: session} = useSession()
+  const confirmationModal = useModal()
+
+  const username = session?.user.name.split(' ')[0]
+
+  const sendPayment = async (recipient: string, amount: number) => {
+    confirmationModal.set(false)
+
+    try {
+      const res = await fetch('/api/payments/send', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({recipient, amount})
+      })      
+    } catch(err) {
+      console.error(err)
+    }
+  }
+
+  const handleCreateMoov = async () => {
+    const res = await fetch('/api/accounts/create-moov-account', {method: 'POST'})
+  }
 
   return (
     <>
@@ -18,12 +40,7 @@ export default function SendMoney() {
         <h1>Welcome back, {username}!</h1>
         <div className='row-item'>
           <p>Send to</p>
-          <select id='recipient-dropdown' name='recipient' defaultValue='DEFAULT' required onChange={(e) => setRecipient(e.target.value)}>
-            <option value="DEFAULT" disabled hidden>Select recipient</option>
-            <option value="Angela Bassett">Angela Bassett</option>
-            <option value="Rachel Wicsz">Rachel Weicsz</option>
-            <option value="Brendan Frasier">Brendan Frasier</option>
-          </select>
+          <input type='email' placeholder="Recipient's email" required onChange={(e) => setRecipient(e.target.value)} />
         </div>
         <div className='row-item'>
           <p>How much?</p>
@@ -34,6 +51,7 @@ export default function SendMoney() {
         </div>
         <div className='row-item no-border'>
           <button onClick={() => confirmationModal.set(true)}>Send</button>
+          <button onClick={handleCreateMoov}>Create Moov</button>
         </div>
       </section>
       {
@@ -42,6 +60,7 @@ export default function SendMoney() {
           confirmation='Are you sure you want to send?'
           confirmButton='Send'
           rejectButton='Reject'
+          handleAccept={() => sendPayment(recipient, amount)}
         />
       }
     </>

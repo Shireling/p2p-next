@@ -10,6 +10,7 @@ interface Props {
   confirmation: string
   confirmButton: string
   rejectButton: string
+  handleAccept: () => void
 }
 
 const ConfirmationModal = ({
@@ -17,6 +18,7 @@ const ConfirmationModal = ({
   confirmation,
   confirmButton,
   rejectButton,
+  handleAccept
 }: Props) => {
   const bodyRef = useRef<Element | null>(null)
   const [mounted, setMounted] = useState(false)
@@ -35,7 +37,7 @@ const ConfirmationModal = ({
           <p>{confirmation}</p>
           <div className="modal-button-wrap">
             <button onClick={() => confirmationModal.set(false)}>{rejectButton}</button>
-            <button>{confirmButton}</button>
+            <button onClick={handleAccept}>{confirmButton}</button>
           </div>
         </div>
       </div>

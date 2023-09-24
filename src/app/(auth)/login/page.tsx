@@ -31,7 +31,6 @@ export default function LoginView() {
       </div>
       <div className='links'>
         <button onClick={() => signIn('google')}>Log in with Google</button>
-        <button onClick={() => fetch('http://localhost:3000/api/auth/create-user')}>Provider login</button>
       </div>
     </div>
   )

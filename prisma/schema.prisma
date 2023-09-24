@@ -21,7 +21,7 @@ model User {
   updatedAt      DateTime  @updatedAt
   sessions       Session[]
   accounts       Account[]
-  favoriteIds    String[]  @db.ObjectId
+  moovId         String    @default("")
 
   @@map("users")
 }
@@ -63,5 +63,5 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-  @@map("tokens")
+  @@map("verification_tokens")
 }
