@@ -10,7 +10,7 @@ export default async function SendMoney() {
   return (
     <>
       <section>
-        <h1>Welcome back, {user?.name.split(' ')[0]}!</h1>
+        <h1>Hey, {user?.name.split(' ')[0]}!</h1>
         <SendMoneyForm sendPayment={sendPayment} paymentMethods={paymentMethods} />
       </section>
     </>

@@ -13,11 +13,9 @@ interface Props {
 
 const SendMoneyForm = ({sendPayment, paymentMethods}: Props) => {
   const [amount, setAmount] = useState(0)
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(paymentMethods[0].cardID)
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(paymentMethods[0])
   const [recipient, setRecipient] = useState('')
   const confirmationModal = useModal()
-
-  console.log(selectedPaymentMethod)
   
   return (
     <>
@@ -29,8 +27,8 @@ const SendMoneyForm = ({sendPayment, paymentMethods}: Props) => {
         <p>Payment method</p>
         {
           paymentMethods ? (
-            <select value={selectedPaymentMethod} onChange={e => setSelectedPaymentMethod(e.target.value)}>
-              {paymentMethods.map((op: any) => <option key={op.cardID} value={op.cardID}>{op.brand} x{op.lastFourCardNumber}</option>)}
+            <select value={selectedPaymentMethod} onChange={e => setSelectedPaymentMethod(paymentMethods[e.target.value])}>
+              {paymentMethods.map((op: any, i: number) => <option key={i} value={i}>{op.brand} x{op.lastFourCardNumber}</option>)}
             </select>
           ) :
           (
@@ -52,7 +50,7 @@ const SendMoneyForm = ({sendPayment, paymentMethods}: Props) => {
       </div>
       {
         confirmationModal.show && <ConfirmationModal 
-          prompt={`You are about to send $${amount} to ${recipient} from you payment method ${selectedPaymentMethod}`}
+          prompt={`You are about to send $${amount} to ${recipient} from your card ending in ${selectedPaymentMethod.lastFourCardNumber}`}
           confirmation='Are you sure you want to send?'
           confirmButton='Send'
           rejectButton='Reject'
