@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ConfirmationModal from '@/components/confirmation-modal/confirmation-modal'
 import { useModal } from '@/hooks/use-modal'
 import Link from 'next/link'
@@ -8,21 +8,17 @@ import { sendPayment } from "@/lib/send-payment"
 
 interface Props {
   sendPayment: (recipient: string, amount: number) => void
+  paymentMethods: any
 }
 
-const SendMoneyForm = ({sendPayment, options}: Props) => {
-  const [cards, setCards] = useState()
+const SendMoneyForm = ({sendPayment, paymentMethods}: Props) => {
   const [amount, setAmount] = useState(0)
-  const [method, setMethod] = useState('')
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(paymentMethods[0].cardID)
   const [recipient, setRecipient] = useState('')
   const confirmationModal = useModal()
 
-  const paymentOptions = async () => {
-    const cards = await options()
-    setCards(cards)
-  }
-
-
+  console.log(selectedPaymentMethod)
+  
   return (
     <>
       <div className='row-item'>
@@ -32,9 +28,9 @@ const SendMoneyForm = ({sendPayment, options}: Props) => {
       <div className='row-item'>
         <p>Payment method</p>
         {
-          cards ? (
-            <select onChange={e => setMethod(e.target.value)}>
-              {cards.map(op => <option key={op.id} value={op.id}>{op.value}</option>)}
+          paymentMethods ? (
+            <select value={selectedPaymentMethod} onChange={e => setSelectedPaymentMethod(e.target.value)}>
+              {paymentMethods.map((op: any) => <option key={op.cardID} value={op.cardID}>{op.brand} x{op.lastFourCardNumber}</option>)}
             </select>
           ) :
           (
@@ -56,7 +52,7 @@ const SendMoneyForm = ({sendPayment, options}: Props) => {
       </div>
       {
         confirmationModal.show && <ConfirmationModal 
-          prompt={`You are about to send $${amount} to ${recipient} from you payment method ${method}`}
+          prompt={`You are about to send $${amount} to ${recipient} from you payment method ${selectedPaymentMethod}`}
           confirmation='Are you sure you want to send?'
           confirmButton='Send'
           rejectButton='Reject'

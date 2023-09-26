@@ -15,7 +15,7 @@ const AddCardForm = () => {
   const [zip, setZip] = useState('')
   const [defaultAddress, setDefaultAddress] = useState(true)
 
-  const handleLinkCard = async (e) => {
+  const handleLinkCard = async (e: React.FormEvent) => {
     e.preventDefault()    
 
     const res = await fetch('/api/accounts/link-card', {
