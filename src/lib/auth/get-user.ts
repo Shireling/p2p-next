@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 export const getUser = async () => {
   const session = await getUserSession()
 
-  const user = prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
       id: session?.user.id
     }

@@ -1,5 +1,6 @@
 'use client'
 
+import { redirect } from "next/navigation"
 import { useState } from "react"
 
 const SetupForm = () => {
@@ -23,7 +24,7 @@ const SetupForm = () => {
         })
       })
 
-      console.log(res.json())
+      redirect('/')
     } catch(err) {
       console.error(err)
     }

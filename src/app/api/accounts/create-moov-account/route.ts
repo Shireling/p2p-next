@@ -3,6 +3,7 @@ import { Moov } from '@moovio/node'
 import { NextResponse } from "next/server"
 import { PrismaClient } from '@prisma/client'
 import { getUserSession } from '@/lib/auth/get-user-session'
+import { getUser } from '@/lib/auth/get-user'
 
 const prisma = new PrismaClient()
 
@@ -13,9 +14,9 @@ export async function POST(req: Request) {
     secretKey: process.env.MOOV_SECRET_KEY as string,
     domain: process.env.MOOV_DOMAIN as string
   })
-  const {firstName, middleName, lastName, phone} = await req.json()
-  const session = await getUserSession()
-  const phoneString = phone  
+  const user = await getUser()
+  const firstName = user?.name.split(' ')[0]
+  const lastName = user?.name.split(' ')[1]
   
   try {    
     const account = await moov.accounts.create({
@@ -24,21 +25,16 @@ export async function POST(req: Request) {
         individual: {
           name: {
             firstName,
-            middleName,
             lastName
           },
-          email: "some@email.com",
-          phone: {
-            number: phoneString,
-            countryCode: "1"
-          }
+          email: user?.email
         }
       }
-    })
+    } as any)
 
     const updateUser = await prisma.user.update({
       where: {
-        id: session?.user.id
+        id: user?.id
       },
       data: {
         moovId: account.accountID

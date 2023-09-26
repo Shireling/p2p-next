@@ -1,0 +1,25 @@
+.tabs-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.address-check {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.address-check p {
+  margin-bottom: 0;
+}

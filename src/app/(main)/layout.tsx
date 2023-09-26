@@ -6,9 +6,9 @@ import { redirect } from "next/navigation"
 
 export default async function MainLayout({children}: {children: React.ReactNode}) {
   const session = await getUserSession()
-  const user = await getUser()
-  
   !session && redirect('/login')
+  
+  const user = await getUser()  
   !user?.moovId && redirect('/setup')
 
   return (

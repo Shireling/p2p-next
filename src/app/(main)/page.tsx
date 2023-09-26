@@ -1,68 +1,26 @@
-'use client'
+import SendMoneyForm from '@/components/send-money-form/send-money-form'
+import { getUser } from '@/lib/auth/get-user'
+import { moov } from '@/lib/moov/moov-client'
+import { sendPayment } from '@/lib/send-payment'
 
-import ConfirmationModal from '@/components/confirmation-modal/confirmation-modal'
-import { useState } from 'react'
-import { useModal } from '@/hooks/use-modal'
-import { useSession } from 'next-auth/react'
+export default async function SendMoney() {
+  const user = await getUser()
 
-export default function SendMoney() {
-  const [amount, setAmount] = useState(0)
-  const [recipient, setRecipient] = useState('')
+  const getOptions = async () => {
+    if(user) {
+      const accountId = user.moovId
+      const cards = await moov.cards.list(accountId)
 
-  const {data: session} = useSession()
-  const confirmationModal = useModal()
-
-  const username = session?.user.name.split(' ')[0]
-
-  const sendPayment = async (recipient: string, amount: number) => {
-    confirmationModal.set(false)
-
-    try {
-      const res = await fetch('/api/payments/send', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({recipient, amount})
-      })      
-    } catch(err) {
-      console.error(err)
+      return cards
     }
-  }
-
-  const handleCreateMoov = async () => {
-    const res = await fetch('/api/accounts/create-moov-account', {method: 'POST'})
   }
 
   return (
     <>
       <section>
-        <h1>Welcome back, {username}!</h1>
-        <div className='row-item'>
-          <p>Send to</p>
-          <input type='email' placeholder="Recipient's email" required onChange={(e) => setRecipient(e.target.value)} />
-        </div>
-        <div className='row-item'>
-          <p>How much?</p>
-          <div className='dollar-input-wrap'>
-            <p className='dollar-input-sign'>$</p>
-            <input className='dollar-input' type='number' max={10000} required onChange={(e) => setAmount(Number(e.target.value))} />
-          </div>
-        </div>
-        <div className='row-item no-border'>
-          <button onClick={() => confirmationModal.set(true)}>Send</button>
-          <button onClick={handleCreateMoov}>Create Moov</button>
-        </div>
+        <h1>Welcome back, {user?.name.split(' ')[0]}!</h1>
+        <SendMoneyForm sendPayment={sendPayment} options={getOptions()} />
       </section>
-      {
-        confirmationModal.show && <ConfirmationModal 
-          prompt={`You are about to send $${amount} to ${recipient}`}
-          confirmation='Are you sure you want to send?'
-          confirmButton='Send'
-          rejectButton='Reject'
-          handleAccept={() => sendPayment(recipient, amount)}
-        />
-      }
     </>
   )
 }
