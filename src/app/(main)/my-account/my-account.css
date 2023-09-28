@@ -1,0 +1,6 @@
+.spaced-sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 24px;
+}

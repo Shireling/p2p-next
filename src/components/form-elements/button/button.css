@@ -1,0 +1,22 @@
+button {
+  width: 100%;
+  background-color: #D459D7;
+  display: flex;
+  padding: 14px 0px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: #D459D7;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  font-weight: 400;
+}
+
+.hollow {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #D459D7;
+  color: #D459D7
+}

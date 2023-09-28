@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { getUser } from "@/lib/auth/get-user"
-import SetupForm from "@/components/setup-form/setup-form"
+import SetupForm from "@/components/forms/setup-form/setup-form"
 
 export default async function Setup() {
   const user = await getUser()

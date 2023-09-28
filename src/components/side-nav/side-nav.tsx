@@ -1,17 +1,25 @@
 import './side-nav.css'
 import Link from 'next/link'
-import SignOutButton from '../sign-out-button/sign-out-button'
+import SignOutButton from '../form-elements/sign-out-button/sign-out-button'
 
 const SideNav = () => {
   return (
     <nav>
       <div className='link-list'>
-        <Link href='/'>Send</Link>
-        <Link href='/activity'>Activity</Link>
-        <Link href='/my-account'>My account</Link>
+        <Link href='/'>
+          <div className='nav-icon'></div>
+        </Link>
+        <Link href='/activity'>
+          <div className='nav-icon'></div>
+        </Link>
+        <Link href='/my-account'>
+          <div className='nav-icon'></div>
+        </Link>
       </div>
       <div>
-        <SignOutButton>Sign out</SignOutButton>
+        <SignOutButton>
+          <div className='nav-icon'></div>
+        </SignOutButton>
       </div>
     </nav>
   )

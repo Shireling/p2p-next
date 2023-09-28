@@ -1,12 +1,12 @@
-main {
+/* main {
   height: 100vh;
   display: flex;
   position: relative;
-}
+} */
 
 .big-view {
   width: 100%;
-  padding: 20px;
+  padding: 60px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,6 @@ main {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid rgb(237, 237, 237)
 }
 
 .row-item.no-border {

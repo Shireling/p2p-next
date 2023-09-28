@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/redux/store"
 import { signIn } from "next-auth/react"
 import { providerLogin } from "@/lib/auth/provider-login"
+import Button from "@/components/form-elements/button/button"
+import TextInput from "@/components/form-elements/text-input/text-input"
 
 export default function LoginView() {
   const [username, setUsername] = useState('')
@@ -20,17 +22,18 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>PLEASE LOG IN</h1>
       <div className='form-wrap'>
-        <input type='email' placeholder='Email' value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={() => signIn()}>Log in</button>
+        <TextInput inputType='email' placeholder='Email' value={username} handleChange={(e) => setUsername(e.target.value)} />
+        <TextInput inputType='password' placeholder='Password' value={password} handleChange={(e) => setPassword(e.target.value)} />
+        <Button handleClick={() => signIn()}>Log in</Button>
         <Link href='/create-account'>
-          <button>Create account</button>
+          <Button handleClick={() => console.log('go to create')} hollow>Create account</Button>
         </Link>
       </div>
+      <hr/>
       <div className='links'>
-        <button onClick={() => signIn('google')}>Log in with Google</button>
+        <Button handleClick={() => signIn('google')}>Log in with Google</Button>
       </div>
     </div>
   )

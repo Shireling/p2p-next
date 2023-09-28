@@ -4,6 +4,7 @@ import './confirmation-modal.css'
 import { useRef, useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { useModal } from '@/hooks/use-modal'
+import Button from '../form-elements/button/button'
 
 interface Props {
   prompt: string
@@ -36,8 +37,8 @@ const ConfirmationModal = ({
           <h2>{prompt}</h2>
           <p>{confirmation}</p>
           <div className="modal-button-wrap">
-            <button onClick={() => confirmationModal.set(false)}>{rejectButton}</button>
-            <button onClick={handleAccept}>{confirmButton}</button>
+            <Button handleClick={() => confirmationModal.set(false)} hollow>{rejectButton}</Button>
+            <Button handleClick={handleAccept}>{confirmButton}</Button>
           </div>
         </div>
       </div>

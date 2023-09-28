@@ -1,4 +1,4 @@
-/* @import url() */
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -11,69 +11,75 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  background: radial-gradient(
+      485.19% 122.52% at 85.08% -70.05%,
+      rgba(232, 56, 56, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    radial-gradient(924.38% 353.78% at -89.95% 143.6%, #be9fcc 0%, #fff 100%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: Inria Sans;
+}
+
+main {
+  display: flex;
+  max-width: 781px;
+  width: 100%;
+  min-height: 440px;
+  justify-content: center;
+  margin: auto;
+  border-radius: 24px;
+  border: 2px solid #B8B8B8;
+  background: #FFF;
+  overflow: hidden;
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
-  font-size: 30px;
-  margin-bottom: 12px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-h3 {
-  font-size: 20px;
-  margin-bottom: 8px;
+  color: #000;
+  font-family: Inria Sans;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.9px;
 }
 
 p {
+  color: #6a6a6a;
   font-size: 16px;
-  margin-bottom: 6px;
+  font-weight: 300;
+  letter-spacing: 0.8px;
 }
 
 a {
   color: black;
+  text-decoration: none;
+  color: #D459D7;
 }
 
-input {
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-}
-
-input[type=text], input[type=email], input[type=password] {
-  padding: 10px;
-}
-
-input[type=number] {
-  padding: 10px;
-  width: 100px;
-}
-
-input[type=number].dollar-input {
-  padding-left: 16px;
-}
-
-select {
-  padding: 10px;
-  font-family: Inter, sans-serif;
-  font-size: 16px;
-}
-
-.dollar-input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.dollar-input-sign {
-  position: absolute;
-  top: auto;
-  bottom: auto;
-  left: 5px;
-  right: auto;
+input, select, button {
+  font-family: Inria Sans;
 }
 
 button {
-  padding: 10px;
   cursor: pointer;
+}
+
+hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #C2C2C2;
+}
+
+.underlined {
+  text-decoration: underline;
 }

@@ -1,0 +1,13 @@
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  justify-self: stretch;
+  justify-content: stretch;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.form-fields-3 {
+  display: flex;
+  gap: 10px;
+}

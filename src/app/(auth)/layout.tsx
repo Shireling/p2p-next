@@ -8,7 +8,9 @@ export default async function AuthLayout({children}: {children: React.ReactNode}
 
   return (
     <section>
-      {children}
+      <div className='inner-view'>
+        {children}
+      </div>
     </section>
   )
 }

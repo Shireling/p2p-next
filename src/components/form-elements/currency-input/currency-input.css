@@ -1,0 +1,32 @@
+.currency-input {
+  max-width: 100px;
+  display: flex;
+  padding: 14px 6px 14px 26px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid #BEBEBE;
+  color: black;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.8px;
+  font-weight: 400;
+
+  &&::placeholder {
+    color: #8C8C8C;
+  }
+}
+
+.dollar-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dollar-input-sign {
+  position: absolute;
+  top: auto;
+  bottom: auto;
+  left: 14px;
+  right: auto;
+}
