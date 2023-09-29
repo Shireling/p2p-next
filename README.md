@@ -1,3 +1,7 @@
+## IMPORTANT
+9/29/23 - This project is in current development and nearing completion. Be aware there might be some bugs that are still being addressed.
+
+
 ## Summary
 Public P2P(peer-to-peer) web-app project showcasing the power of Next.js 13 along with Moov.io as the principle payment processor.
 
