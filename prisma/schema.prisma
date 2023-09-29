@@ -22,6 +22,12 @@ model User {
   sessions       Session[]
   accounts       Account[]
   moovId         String    @default("")
+  phone String
+  address_line_1 String
+  address_line_2 String
+  city String
+  state String
+  zip String
 
   @@map("users")
 }
