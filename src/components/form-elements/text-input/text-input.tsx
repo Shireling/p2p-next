@@ -8,7 +8,9 @@ interface Props {
   required?: boolean
   value: string
   currency?: string
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  name: string
+  register: (name: string) => any
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const TextInput = ({
@@ -16,6 +18,8 @@ const TextInput = ({
   placeholder,
   required,
   value,
+  name,
+  register,
   handleChange
 }: Props) => {
   return (
@@ -26,6 +30,7 @@ const TextInput = ({
       placeholder={placeholder}
       required={required ? true : false}
       onChange={handleChange}
+      {...register(name)}
     />
   )
 }

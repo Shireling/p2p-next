@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react"
 import { providerLogin } from "@/lib/auth/provider-login"
 import Button from "@/components/form-elements/button/button"
 import TextInput from "@/components/form-elements/text-input/text-input"
+import LoginForm from "@/components/forms/login-form/login-form"
 
 export default function LoginView() {
   const [username, setUsername] = useState('')
@@ -24,9 +25,7 @@ export default function LoginView() {
     <div>
       <h1>PLEASE LOG IN</h1>
       <div className='form-wrap'>
-        <TextInput inputType='email' placeholder='Email' value={username} handleChange={(e) => setUsername(e.target.value)} />
-        <TextInput inputType='password' placeholder='Password' value={password} handleChange={(e) => setPassword(e.target.value)} />
-        <Button handleClick={() => signIn()}>Log in</Button>
+        <LoginForm />
         <Link href='/create-account'>
           <Button handleClick={() => console.log('go to create')} hollow>Create account</Button>
         </Link>

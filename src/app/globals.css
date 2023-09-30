@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -32,8 +32,8 @@ main {
   justify-content: center;
   margin: auto;
   border-radius: 24px;
-  border: 2px solid #B8B8B8;
-  background: #FFF;
+  border: 2px solid #b8b8b8;
+  background: #fff;
   overflow: hidden;
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1);
 }
@@ -63,10 +63,12 @@ p {
 a {
   color: black;
   text-decoration: none;
-  color: #D459D7;
+  color: #d459d7;
 }
 
-input, select, button {
+input,
+select,
+button {
   font-family: Inria Sans;
 }
 
@@ -77,9 +79,37 @@ button {
 hr {
   margin: 10px 0;
   border: none;
-  border-top: 1px solid #C2C2C2;
+  border-top: 1px solid #c2c2c2;
 }
 
 .underlined {
   text-decoration: underline;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="numnber"] {
+  display: flex;
+  padding: 14px 16px;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #bebebe;
+  color: black;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.8px;
+  font-weight: 400;
+  width: 100%;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="numnber"]::placeholder {
+  color: #8c8c8c;
+}
+
+.form-error-label {
+  color: rgb(171, 12, 12);
+  font-size: 14px;
+  font-weight: 700;
 }
