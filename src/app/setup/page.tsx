@@ -1,3 +1,4 @@
+import './setup.css'
 import { redirect } from "next/navigation"
 import { getUser } from "@/lib/auth/get-user"
 import SetupForm from "@/components/forms/setup-form/setup-form"
@@ -7,8 +8,8 @@ export default async function Setup() {
   user?.moovId && redirect('/')
 
   return (
-    <div>
-      <h3>Continue account setup</h3>
+    <div className='initial-views-container'>
+      <h1>REGULATION STUFF</h1>
       <SetupForm />
     </div>
   )

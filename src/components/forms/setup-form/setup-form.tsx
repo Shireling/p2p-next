@@ -1,44 +1,57 @@
 'use client'
 
+import './setup-form.css'
 import { redirect } from "next/navigation"
 import { useState } from "react"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { setupSchema } from "@/lib/validation-schemas/setup-schema"
+import Button from "@/components/form-elements/button/button"
+
+interface Inputs {
+  firstName: string
+  lastName: string
+  addressLine1: string
+  addressLine2: string
+  city: string
+  state: string
+  zip: string
+  dob: string
+  ssn: string
+  phone: string
+}
 
 const SetupForm = () => {
-  const [firstName, setFirstName] = useState<string>('')
-  const [lastName, setLastName] = useState<string>('')
-  const [addressLineOne, setAddressLineOne] = useState<string>('')
-  const [addressLineTwo, setAddressLineTwo] = useState<string>('')
-  const [city, setCity] = useState<string>('')
-  const [stateProv, setStateProv] = useState<string>('')
-  const [zip, setZip] = useState<string>('')
-  const [dob, setDob] = useState<string>('')
-  const [ssn, setSsn] = useState<string>('')
-  const [phone, setPhone] = useState<string>('')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>({ resolver: yupResolver(setupSchema) })
 
-  const createMoovAccount = async () => {
-    
-  }  
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data)
+  }
 
   return (
-    <div>
-      <div>
-        <input type='text' placeholder='First' value={firstName} onChange={e => setFirstName(e.target.value)} />
-        <input type='text' placeholder='Last' value={lastName} onChange={e => setLastName(e.target.value)} />
+    <form className='spaced-10' onSubmit={handleSubmit(onSubmit)}>
+      <div className='form-fields-row'>
+        <input type='text' placeholder='First' style={{ border: errors.firstName?.message ? '1px solid red' : '' }} {...register('firstName')} />
+        <input type='text' placeholder='Last' style={{ border: errors.lastName?.message ? '1px solid red' : '' }} {...register('lastName')} />
       </div>
-      <input type='text' placeholder='Address line 1' value={addressLineOne} onChange={e => setAddressLineOne(e.target.value)} />
-      <input type='text' placeholder='Address line 2' value={addressLineTwo} onChange={e => setAddressLineTwo(e.target.value)} />
-      <div>
-        <input type='text' placeholder='City' value={city} onChange={e => setCity(e.target.value)} />
-        <input type='text' placeholder='State' value={stateProv} onChange={e => setStateProv(e.target.value)} />
-        <input type='text' placeholder='Zip' value={zip} onChange={e => setZip(e.target.value)} />
+      <input type='text' placeholder='Address line 1' style={{ border: errors.addressLine1?.message ? '1px solid red' : '' }} {...register('addressLine1')} />
+      <input type='text' placeholder='Address line 2' style={{ border: errors.addressLine2?.message ? '1px solid red' : '' }} {...register('addressLine2')} />
+      <div className='form-fields-row'>
+        <input type='text' placeholder='City' style={{ border: errors.city?.message ? '1px solid red' : '' }} {...register('city')} />
+        <input type='text' placeholder='State' style={{ border: errors.state?.message ? '1px solid red' : '' }} {...register('state')} />
+        <input type='text' placeholder='Zip' style={{ border: errors.zip?.message ? '1px solid red' : '' }} {...register('zip')} />
       </div>
-      <div>
-        <input type='text' placeholder='DOB' value={dob} onChange={e => setDob(e.target.value)} />
-        <input type='text' placeholder='SSN' value={ssn} onChange={e => setSsn(e.target.value)} />
+      <div className='form-fields-row'>
+        <input type='text' placeholder='DOB' style={{ border: errors.dob?.message ? '1px solid red' : '' }} {...register('dob')} />
+        <input type='text' placeholder='SSN' style={{ border: errors.ssn?.message ? '1px solid red' : '' }} {...register('ssn')} />
       </div>
-      <input type='text' placeholder='Phone number' value={phone} onChange={e => setPhone(e.target.value)} />
-      <button onClick={createMoovAccount}>Finish</button>
-    </div>
+      <input type='text' placeholder='Phone number' style={{ border: errors.phone?.message ? '1px solid red' : '' }} {...register('phone')} />
+      <Button inputType='submit'>Save & continue</Button>
+    </form>
   )
 }
 
