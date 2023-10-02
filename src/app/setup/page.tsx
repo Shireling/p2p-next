@@ -1,7 +1,7 @@
 import './setup.css'
 import { redirect } from "next/navigation"
 import { getUser } from "@/lib/auth/get-user"
-import SetupForm from "@/components/forms/setup-form/setup-form"
+import SetupFlow from '@/components/setup-flow/setup-flow'
 
 export default async function Setup() {
   const user = await getUser()
@@ -9,8 +9,7 @@ export default async function Setup() {
 
   return (
     <div className='initial-views-container'>
-      <h1>REGULATION STUFF</h1>
-      <SetupForm />
+      <SetupFlow />
     </div>
   )
 }

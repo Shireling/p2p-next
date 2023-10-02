@@ -3,11 +3,13 @@ import { useSelector, TypedUseSelectorHook } from "react-redux"
 import { paymentsApi } from "./queries/payments-queries"
 import authReducer from './slices/auth-slice'
 import modalsReducer from './slices/modals-slice'
+import setupFlowReducer from './slices/setup-slice'
 
 export const store = configureStore({
   reducer: {
     authReducer,
     modalsReducer,
+    setupFlowReducer,
     [paymentsApi.reducerPath]: paymentsApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
