@@ -121,6 +121,11 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
+"@moovio/moov-js@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.npmjs.org/@moovio/moov-js/-/moov-js-0.0.14.tgz"
+  integrity sha512-BliBiAMplXjfY9iv3cBI0MBsjIJdtnw9+Wu0XLmh3TTT6A8MZwNBwLjn3BTw3r7JEJfirq5fRSJ58Xa+l0UkWw==
+
 "@moovio/node@^1.2.2":
   version "1.2.2"
   resolved "https://registry.npmjs.org/@moovio/node/-/node-1.2.2.tgz"
