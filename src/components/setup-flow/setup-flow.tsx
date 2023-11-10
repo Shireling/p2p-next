@@ -10,6 +10,7 @@ import Tos from "../forms/setup-form/tos"
 
 const SetupFlow = () => {
   const step = useAppSelector(state => state.setupFlowReducer.value.step)
+  const data = useAppSelector(state => state.setupFlowReducer.value.data)
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
@@ -24,6 +25,9 @@ const SetupFlow = () => {
   useEffect(() => {
     router.push(pathname + "?" + createQueryString("step", step.toString()))
   })
+
+  console.log(data)
+  
 
   return (
     <>

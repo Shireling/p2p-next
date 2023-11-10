@@ -9,7 +9,7 @@ import { setupSchema } from "@/lib/validation-schemas/setup-schema"
 import { useSetupState } from "@/hooks/use-setup-state"
 import Button from "@/components/form-elements/button/button"
 import { useDispatch } from "react-redux"
-import { setStep } from "@/redux/slices/setup-slice"
+import { setStep, setData } from "@/redux/slices/setup-slice"
 
 interface Inputs {
   firstName: string
@@ -32,10 +32,19 @@ const SetupForm = () => {
     formState: { errors },
   } = useForm<Inputs>({ resolver: yupResolver(setupSchema) })
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = (data) => {    
+    dispatch(setData({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      addressLineOne: data.addressLine1,
+      addressLineTwo: data.addressLine2 || '',
+      city: data.city,
+      stateProv: data.state,
+      zip: data.zip,
+      phone: data.phone
+    }))
     dispatch(setStep('2'))
-  }  
+  }
 
   return (
     <>
